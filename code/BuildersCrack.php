@@ -41,13 +41,22 @@ class BuildersCrack extends DataExtension
 
         //loop all reviews
         foreach ($html->find('div[class=review-row]') as $review) {
-            print_r($review);
-            $reviewsArray->push($member);
+            //check we have a comment element
+            if ($theReview['comment'] = $review->find('div[class=col-md-3]', 2)) {
+                //date
+                $theReview['date'] = $review->find('p[class=text-muted]', 0)->plaintext;
+
+                //check review length
+                if (strlen($theReview['comment']) > 2)
+                    $reviewsArray->push($theReview);
+            }
+
         }
+        print_r($reviewsArray);
         //pass the data to the buildersReview
         $data = new ArrayData(
             array(
-                'Name' => 'ignore this just testing'
+                'Reviews' => $reviewsArray
             )
         );
 
