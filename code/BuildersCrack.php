@@ -60,9 +60,21 @@ class BuildersCrack extends DataExtension
 
                 }
 
+                //get the first a link its the title
+                $reviewObj = $review->find('a', 0);
+
+                //title
+                $theReview['title'] = $reviewObj->plaintext;
+                //get the href link to job
+                $theReview['href'] = $reviewObj->href;
+
+                //get the job_number jobs\/(\d+)
+                if (preg_match('/jobs\/(\d+)/i', $theReview['href'], $job_number)) {
+                    $theReview['job_number'] = $job_number[1];
+                }
 
                 //comment
-                $theReview['comment'] = $review->find('div[class=comment]', 0)->plaintext;
+                $theReview['comment'] = trim(str_replace(array("\r", "\n", "\s", "&ndash;"), '', strip_tags($review->find('div[class=comment]', 0)->plaintext)));
 
                 //check review length
                 if (strlen($theReview['comment']) > 2)
@@ -72,6 +84,7 @@ class BuildersCrack extends DataExtension
             }
 
         }
+
         //just dumping results for now
         //pass the data to the buildersReview
         $data = new ArrayData(
