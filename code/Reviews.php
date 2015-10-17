@@ -20,7 +20,7 @@ class JobReviews extends DataObject
 
     //declare parent page
     public static $has_one = array(
-        "JobReviews" => "BuildersCrack_Page"
+        "JobReviews" => "BuildersCrackPage"
     );
 
     //create summary fields to be shown on GridField

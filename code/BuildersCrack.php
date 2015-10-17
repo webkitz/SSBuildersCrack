@@ -31,9 +31,15 @@ class BuildersCrack extends DataExtension
     {
         $html = new simple_html_dom();
 
-        //get page source
-        //$source = $this->downloadReview();
+        //get page source load into simplehtml
+        $source = $this->downloadReview();
+        $html->load($source);
 
+        //loop all reviews
+        foreach ($html->find('div[class=review-row]') as $review) {
+            print_r($review);
+            exit;
+        }
         //pass the data to the buildersReview
         $data = new ArrayData(
             array(
@@ -54,7 +60,7 @@ class BuildersCrack extends DataExtension
 
 }
 
-class BuildersCrack_Page extends Page
+class BuildersCrackPage extends Page
 {
 
     private static $db = array();
