@@ -80,17 +80,25 @@ class BuildersCrack extends DataExtension
                 if (strlen($theReview['comment']) > 2)
                     $reviewsArray->push($theReview);
 
+                /*
+                 * 'comment' => 'Text',
+                    'date' => 'Varchar',
+                    'title' => 'Varchar',
+                    'link' => 'Varchar',
+
+                 */
 
                 $jbNo = $theReview['jobNumber'];
-                if (!JobReviews::get_one('JobReviews', "jobNumber = '$jbNo'")) {
+                if (!$newReview = JobReviews::get_one('JobReviews', "jobNumber = '$jbNo'")) {
                     $newReview = new JobReviews();
+                }
                     $newReview->jobNumber = $jbNo;
-                    $newReview->href = $reviewObj->href;
-                    $newReview->jobNumber = $theReview['jobNumber'];
+                $newReview->date = $theReview['date'];
+                $newReview->link = $reviewObj->href;
                     $newReview->comment = $theReview['comment'];
+                $newReview->title = $theReview['title'];
                     $newReview->Write();
 
-                }
 
             }
 
