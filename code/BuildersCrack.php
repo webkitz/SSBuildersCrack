@@ -56,7 +56,7 @@ class BuildersCrack extends DataExtension
                     if ($review->find('p[class=text-warning bold]', 0))
                         $theReview['date'] = $review->find('p[class=text-warning bold]', 0)->plaintext;
                     else
-                        $theReview['date'] = 'Couldnt locate';
+                        $theReview['date'] = 'Couldn\'t locate';
 
                 }
 
@@ -73,8 +73,6 @@ class BuildersCrack extends DataExtension
 
         }
         //just dumping results for now
-        print_r($reviewsArray);
-        exit;
         //pass the data to the buildersReview
         $data = new ArrayData(
             array(
