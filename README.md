@@ -14,6 +14,7 @@ Module not finished.
 2. install with command line 
  ``` sh
     $ composer create-project webkitz/SSBuildersCrack --stability="dev"
+    ```
 
 ### Setup
 
