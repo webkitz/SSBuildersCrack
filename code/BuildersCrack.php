@@ -27,7 +27,7 @@ class BuildersCrack extends DataExtension
 
     }
 
-    public function getReviews($name = 'testing')
+    public function getReviews($render = true)
     {
         $html = new simple_html_dom();
 
@@ -92,6 +92,9 @@ class BuildersCrack extends DataExtension
                 'Reviews' => $reviewsArray
             )
         );
+
+        if (!$render)
+            return $reviewsArray;
 
         return $data->renderWith('buildersReview');
     }
