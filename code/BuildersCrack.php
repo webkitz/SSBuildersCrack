@@ -96,7 +96,7 @@ class BuildersCrack extends DataExtension
                 $newReview->date = $theReview['date'];
                 $newReview->link = $reviewObj->href;
                     $newReview->comment = $theReview['comment'];
-                $newReview->title = $theReview['title'];
+                $newReview->jobTitle = $theReview['title'];
                     $newReview->Write();
 
 

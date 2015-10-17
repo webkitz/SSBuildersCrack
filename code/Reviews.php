@@ -13,7 +13,7 @@ class JobReviews extends DataObject
         //db fields for customer reviews section
         'comment' => 'Text',
         'date' => 'Varchar',
-        'title' => 'Text',
+        'jobTitle' => 'Text',
         'link' => 'Varchar',
         'jobNumber' => 'Varchar'
     );
@@ -25,8 +25,8 @@ class JobReviews extends DataObject
 
     //create summary fields to be shown on GridField
     public static $summary_fields = array(
-        'jobNumber' => 'job Number',
-        'title' => 'Review Title',
+        'jobNumber' => 'Job Number',
+        'jobTitle' => 'Review Title',
         'date' => 'Date'
     );
 
@@ -34,11 +34,11 @@ class JobReviews extends DataObject
     public function getCMSFields()
     {
         return FieldList::create(
-            TextField::create('title', 'Review title'),
+            TextField::create('jobTitle', 'Review title'),
             TextField::create('date', 'Review Date'),
             TextField::create('link', 'Review Link'),
             TextField::create('jobNumber', 'Job Number'),
-            TextareaField::create('comment', 'Reivew')
+            TextareaField::create('comment', 'Review')
         );
     }
 
