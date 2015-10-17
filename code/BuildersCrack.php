@@ -70,7 +70,7 @@ class BuildersCrack extends DataExtension
 
                 //get the job_number jobs\/(\d+)
                 if (preg_match('/jobs\/(\d+)/i', $theReview['href'], $job_number)) {
-                    $theReview['job_number'] = $job_number[1];
+                    $theReview['jobNumber'] = $job_number[1];
                 }
 
                 //comment
@@ -80,6 +80,17 @@ class BuildersCrack extends DataExtension
                 if (strlen($theReview['comment']) > 2)
                     $reviewsArray->push($theReview);
 
+
+                $jbNo = $theReview['jobNumber'];
+                if (!JobReviews::get_one('JobReviews', "jobNumber = '$jbNo'")) {
+                    $newReview = new JobReviews();
+                    $newReview->jobNumber = $jbNo;
+                    $newReview->href = $reviewObj->href;
+                    $newReview->jobNumber = $theReview['jobNumber'];
+                    $newReview->comment = $theReview['comment'];
+                    $newReview->Write();
+
+                }
 
             }
 

@@ -4,7 +4,7 @@
         <li>$title</li>
         <li>$date</li>
         <li>$comment</li>
-        <li>$job_number</li>
+        <li>$jobNumber</li>
         <li>$href</li>
     </ul>
 
