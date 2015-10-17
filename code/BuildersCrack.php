@@ -41,18 +41,40 @@ class BuildersCrack extends DataExtension
 
         //loop all reviews
         foreach ($html->find('div[class=review-row]') as $review) {
+
             //check we have a comment element
-            if ($theReview['comment'] = $review->find('div[class=col-md-3]', 2)) {
+            if ($review->find('div[class=comment]', 0)) {
+
+
+                //->plaintext;
+
                 //date
-                $theReview['date'] = $review->find('p[class=text-muted]', 0)->plaintext;
+                if ($review->find('p[class=text-muted]', 0))
+                    $theReview['date'] = $review->find('p[class=text-muted]', 0)->plaintext;
+                else {   //this is silly front end designers using text warning than
+                    //try grab date
+                    if ($review->find('p[class=text-warning bold]', 0))
+                        $theReview['date'] = $review->find('p[class=text-warning bold]', 0)->plaintext;
+                    else
+                        $theReview['date'] = 'Couldnt locate';
+
+                }
+
+
+                //comment
+                $theReview['comment'] = $review->find('div[class=comment]', 0)->plaintext;
 
                 //check review length
                 if (strlen($theReview['comment']) > 2)
                     $reviewsArray->push($theReview);
+
+
             }
 
         }
+        //just dumping results for now
         print_r($reviewsArray);
+        exit;
         //pass the data to the buildersReview
         $data = new ArrayData(
             array(
@@ -68,6 +90,9 @@ class BuildersCrack extends DataExtension
      */
     public function downloadReview()
     {
+        if (self::$sandBox)
+            return file_get_contents('../sandbox.html'); //file need to be in root
+
         return file_get_contents(self::$url);
     }
 
