@@ -35,10 +35,14 @@ class BuildersCrack extends DataExtension
         $source = $this->downloadReview();
         $html->load($source);
 
+        //setup our reviews array
+        $reviewsArray = ArrayList::create();
+
+
         //loop all reviews
         foreach ($html->find('div[class=review-row]') as $review) {
             print_r($review);
-            exit;
+            $reviewsArray->push($member);
         }
         //pass the data to the buildersReview
         $data = new ArrayData(
