@@ -25,3 +25,6 @@ BuildersCrack::setUrl("https://builderscrack.co.nz/tradies/befd80s/redefine-reno
 Then in your template add the following
 
 - $getReviews   | this will render the module template with reviews
+
+#### Cron Job 
+To run and download buildercrack reviews call once a week php framework/cli-script.php /builderscrack/cronjob

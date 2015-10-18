@@ -164,7 +164,7 @@ class BuildersCrackPage extends Page
 class BuildersCrackController extends Controller
 {
     static $allowed_actions = array(
-        'cronjob',
+        'cronjob'
     );
 
     public function index()
