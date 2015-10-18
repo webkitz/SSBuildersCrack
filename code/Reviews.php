@@ -15,7 +15,8 @@ class JobReviews extends DataObject
         'date' => 'Varchar',
         'jobTitle' => 'Text',
         'link' => 'Varchar',
-        'jobNumber' => 'Varchar'
+        'jobNumber' => 'Varchar',
+        'enabled' => 'Boolean'
     );
 
     //declare parent page

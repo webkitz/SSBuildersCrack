@@ -27,12 +27,53 @@ class BuildersCrack extends DataExtension
 
     }
 
+    public function JobReviews($render = true)
+    {
+        //return the products
+        //ProjectImageObject','','ID ASC','',3
+        $reviewsArray = JobReviews::get('JobReviews', '', '', '', 5);
+
+        $data = new ArrayData(
+            array(
+                'Reviews' => $reviewsArray
+            )
+        );
+
+
+        if (!$render)
+            return $reviewsArray;
+
+        return $data->renderWith('buildersReview');
+    }
+
+    /*
     public function getReviews($render = true)
     {
+        //just dumping results for now
+        //pass the data to the buildersReview
+        $reviewsArray = JobReviews::toArray();
+
+        $data = new ArrayData(
+            array(
+                'Reviews' => $reviewsArray
+            )
+        );
+
+
+
+        if (!$render)
+            return $reviewsArray;
+
+        return $data->renderWith('buildersReview');
+    }
+    */
+    public static function cronJob()
+    {
+        echo "exit";
         $html = new simple_html_dom();
 
         //get page source load into simplehtml
-        $source = $this->downloadReview();
+        $source = self::downloadReview();
         $html->load($source);
 
         //setup our reviews array
@@ -44,7 +85,6 @@ class BuildersCrack extends DataExtension
 
             //check we have a comment element
             if ($review->find('div[class=comment]', 0)) {
-
 
                 //->plaintext;
 
@@ -80,14 +120,6 @@ class BuildersCrack extends DataExtension
                 if (strlen($theReview['comment']) > 2)
                     $reviewsArray->push($theReview);
 
-                /*
-                 * 'comment' => 'Text',
-                    'date' => 'Varchar',
-                    'title' => 'Varchar',
-                    'link' => 'Varchar',
-
-                 */
-
                 $jbNo = $theReview['jobNumber'];
                 if (!$newReview = JobReviews::get_one('JobReviews', "jobNumber = '$jbNo'")) {
                     $newReview = new JobReviews();
@@ -99,23 +131,11 @@ class BuildersCrack extends DataExtension
                 $newReview->jobTitle = $theReview['title'];
                     $newReview->Write();
 
-
             }
 
         }
 
-        //just dumping results for now
-        //pass the data to the buildersReview
-        $data = new ArrayData(
-            array(
-                'Reviews' => $reviewsArray
-            )
-        );
 
-        if (!$render)
-            return $reviewsArray;
-
-        return $data->renderWith('buildersReview');
     }
 
     /**
@@ -158,7 +178,19 @@ class BuildersCrackPage extends Page
     }
 }
 
-class BuildersCrack_Controller extends Page_Controller
-{
 
+class BuildersCrackController extends Controller
+{
+    static $allowed_actions = array(
+        'cronjob',
+    );
+
+    public function index()
+    {
+    }
+
+    public function cronjob()
+    {
+        BuildersCrack::cronJob();
+    }
 }
