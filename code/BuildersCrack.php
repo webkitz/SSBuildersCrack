@@ -173,6 +173,9 @@ class BuildersCrackController extends Controller
 
     public function cronjob()
     {
+        if (!Director::is_cli() && $_SERVER['REMOTE_ADDR'] != $_SERVER['SERVER_ADDR'])
+            die("cron job needs to run locally");
+
         BuildersCrack::cronJob();
     }
 }
