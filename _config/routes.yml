@@ -1,0 +1,7 @@
+---
+Name: BuildersCrack
+After: framework/routes#coreroutes
+---
+Director:
+  rules:
+    'builderscrack': 'BuildersCrackController'

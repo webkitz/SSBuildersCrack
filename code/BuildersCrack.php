@@ -30,8 +30,9 @@ class BuildersCrack extends DataExtension
     public function JobReviews($render = true)
     {
         //return the products
-        //ProjectImageObject','','ID ASC','',3
-        $reviewsArray = JobReviews::get('JobReviews', '', '', '', 5);
+        //JobReviews','','ID ASC','',3
+        //$reviewsArray = JobReviews::get('JobReviews', '', '', '', 5);
+        $reviewsArray = JobReviews::get();
 
         $data = new ArrayData(
             array(
@@ -46,30 +47,10 @@ class BuildersCrack extends DataExtension
         return $data->renderWith('buildersReview');
     }
 
-    /*
-    public function getReviews($render = true)
-    {
-        //just dumping results for now
-        //pass the data to the buildersReview
-        $reviewsArray = JobReviews::toArray();
 
-        $data = new ArrayData(
-            array(
-                'Reviews' => $reviewsArray
-            )
-        );
-
-
-
-        if (!$render)
-            return $reviewsArray;
-
-        return $data->renderWith('buildersReview');
-    }
-    */
     public static function cronJob()
     {
-        echo "exit";
+
         $html = new simple_html_dom();
 
         //get page source load into simplehtml
@@ -134,6 +115,7 @@ class BuildersCrack extends DataExtension
             }
 
         }
+        die("Cron job completed");
 
 
     }
@@ -141,7 +123,7 @@ class BuildersCrack extends DataExtension
     /**
      * @return string contain contents of review
      */
-    public function downloadReview()
+    public static function downloadReview()
     {
         if (self::$sandBox)
             return file_get_contents('../sandbox.html'); //file need to be in root
