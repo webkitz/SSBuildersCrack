@@ -5,13 +5,21 @@ class BuildersCrack extends DataExtension
 
     protected static $url = "https://builderscrack.co.nz/";    //url of the review to be scrapped
     protected static $sandBox = false;
-
+    protected static $trader = false;
     /**
      * @param $url URL of builders crack review to be scrapped
      */
     public static function setUrl($url)
     {
         self::$url = $url;
+    }
+
+    /**
+     * @param $trader | Trader ID
+     */
+    public static function setTrader($trader)
+    {
+        self::$trader = $trader;
     }
 
     /**
@@ -134,7 +142,10 @@ class BuildersCrack extends DataExtension
         if (self::$sandBox)
             return file_get_contents('../sandbox.html'); //file need to be in root
 
+        if (!self::$trader)
         return file_get_contents(self::$url);
+
+        return file_get_contents("https://builderscrack.co.nz/reviews/" . self::$trader);
     }
 
 }

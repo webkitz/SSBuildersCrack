@@ -19,11 +19,15 @@ Module is not finished yet. Please do not install till finished/complete.
     ```
 
 ### Setup
-
-In your mysite _config.php to Set the full link to the buildersCrack review do the following 
-
-BuildersCrack::setUrl("https://builderscrack.co.nz/tradies/befd80s/redefine-renovations-and-construction-ltd/reviews");
-
+Set your builders crack 
+In your mysite/_config.php to Set the full link to the buildersCrack review do the following 
+ ```
+    BuildersCrack::setUrl("https://builderscrack.co.nz/tradies/befd80s/redefine-renovations-and-construction-ltd/reviews");
+ ```
+ or you can just set the traders reference id eg : befd80s
+  ```
+     BuildersCrack::setTrader("befd80s");
+  ```
 Then in your template add the following
 
 - $JobReviews   | this will render the module template with reviews
@@ -40,8 +44,11 @@ Then in your template add the following
 <% end_loop %>
     ```
     
-- $JobReviewsTemplate | Returns the modules template review
+- $JobReviewsTemplate | Returns the modules current template which is the above.
 
 #### Cron Job 
-- To run and download buildercrack reviews call as required php framework/cli-script.php /builderscrack/cronjob
-
+- To run the builderscrack cron task call as required 
+ ```
+ $ php framework/cli-script.php /builderscrack/cronjob
+  ```
+Or if logged as in admin can simply run http://localhost/website/builderscrack/cronjob
