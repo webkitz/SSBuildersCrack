@@ -1,7 +1,9 @@
 ## Silverstripe Module ##
 
-Module not finished. 
+Module is not finished yet. Please do not install till finished/complete.
 
+#### Todo 
+- Add admin check to scrape builders crack
 
 ###installation
 
@@ -24,7 +26,22 @@ BuildersCrack::setUrl("https://builderscrack.co.nz/tradies/befd80s/redefine-reno
 
 Then in your template add the following
 
-- $getReviews   | this will render the module template with reviews
+- $JobReviews   | this will render the module template with reviews
+ ```
+<% loop $JobReviews %>
+    <ul>
+        <li>$title</li>
+        <li>$date</li>
+        <li>$comment</li>
+        <li>$jobNumber</li>
+        <li>$href</li>
+    </ul>
+
+<% end_loop %>
+    ```
+    
+- $JobReviewsTemplate | Returns the modules template review
 
 #### Cron Job 
-To run and download buildercrack reviews call once a week php framework/cli-script.php /builderscrack/cronjob
+- To run and download buildercrack reviews call as required php framework/cli-script.php /builderscrack/cronjob
+

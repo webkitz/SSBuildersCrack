@@ -1,5 +1,5 @@
 <!--Testing Template Rendering please ignore!-->
-<% loop $Reviews %>
+<% loop $JobReviews %>
     <ul>
         <li>$title</li>
         <li>$date</li>

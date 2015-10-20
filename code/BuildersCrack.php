@@ -27,11 +27,22 @@ class BuildersCrack extends DataExtension
 
     }
 
-    public function JobReviews($render = true)
+    /**
+     * @return DataList | JobReviews
+     */
+    public function JobReviews()
     {
-        //return the products
-        //JobReviews','','ID ASC','',3
-        //$reviewsArray = JobReviews::get('JobReviews', '', '', '', 5);
+
+        return JobReviews::get();
+
+    }
+
+    /**
+     * @return HTMLText | Just render Template only
+     */
+    public function JobReviewsTemplate()
+    {
+       
         $reviewsArray = JobReviews::get();
 
         $data = new ArrayData(
@@ -40,13 +51,8 @@ class BuildersCrack extends DataExtension
             )
         );
 
-
-        if (!$render)
-            return $reviewsArray;
-
         return $data->renderWith('buildersReview');
     }
-
 
     public static function cronJob()
     {
