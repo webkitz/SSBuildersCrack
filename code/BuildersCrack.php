@@ -6,6 +6,8 @@ class BuildersCrack extends DataExtension
     protected static $url = "https://builderscrack.co.nz/";    //url of the review to be scrapped
     protected static $sandBox = false;
     protected static $trader = false;
+    protected static $workmanship = 3;
+
     /**
      * @param $url URL of builders crack review to be scrapped
      */
@@ -50,7 +52,7 @@ class BuildersCrack extends DataExtension
      */
     public function JobReviewsTemplate()
     {
-       
+
         $reviewsArray = JobReviews::get();
 
         $data = new ArrayData(
@@ -186,6 +188,10 @@ class BuildersCrackController extends Controller
 
     public function index()
     {
+        if (Permission::check('ADMIN'))
+            BuildersCrack::cronJob();
+        else
+            return "Need to be logged on as admin";
     }
 
     public function cronjob()
@@ -195,4 +201,6 @@ class BuildersCrackController extends Controller
 
         BuildersCrack::cronJob();
     }
+
+
 }

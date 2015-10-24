@@ -28,6 +28,7 @@ In your mysite/_config.php to Set the full link to the buildersCrack review do t
   ```
      BuildersCrack::setTrader("befd80s");
   ```
+See more [config options](#Config)
 Then in your template add the following
 
 - $JobReviews   | this will render the module template with reviews
@@ -52,3 +53,6 @@ Then in your template add the following
  $ php framework/cli-script.php /builderscrack/cronjob
   ```
 Or if logged as in admin can simply run http://localhost/website/builderscrack/cronjob
+
+
+#### Config Options

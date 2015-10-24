@@ -66,4 +66,6 @@ class JobReviews extends DataObject
     {
         return true;
     }
+
+
 }
