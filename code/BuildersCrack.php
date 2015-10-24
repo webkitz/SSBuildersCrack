@@ -17,6 +17,14 @@ class BuildersCrack extends DataExtension
     }
 
     /**
+     * @param $min Set min amount as workmanship
+     */
+    public static function setWorkmanship($min)
+    {
+        //@todo check is number
+        self::$workmanship = $min;
+    }
+    /**
      * @param $trader | Trader ID
      */
     public static function setTrader($trader)
