@@ -50,9 +50,7 @@ class BuildersCrack extends DataExtension
      */
     public function JobReviews()
     {
-
-        return JobReviews::get();
-
+        return DataObject::get('JobReviews', "enabled = '1'", "date ASC");
     }
 
     /**
@@ -61,7 +59,7 @@ class BuildersCrack extends DataExtension
     public function JobReviewsTemplate()
     {
 
-        $reviewsArray = JobReviews::get();
+        $reviewsArray = $this->JobReviews();
 
         $data = new ArrayData(
             array(

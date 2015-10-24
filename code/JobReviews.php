@@ -39,7 +39,8 @@ class JobReviews extends DataObject
             TextField::create('date', 'Review Date'),
             TextField::create('link', 'Review Link'),
             TextField::create('jobNumber', 'Job Number'),
-            TextareaField::create('comment', 'Review')
+            TextareaField::create('comment', 'Review'),
+            CheckboxField::create('enabled', 'Enable Review')
         );
     }
 
