@@ -86,10 +86,19 @@ class BuildersCrack extends DataExtension
         //loop all reviews
         foreach ($html->find('div[class=review-row]') as $review) {
 
+
             //check we have a comment element
             if ($review->find('div[class=comment]', 0)) {
+                $theReview = array(
+                    'workmanship' => '0',
+                    'cost' => '0',
+                    'schedule' => '0',
+                    'professionalism' => '0',
+                    'responsiveness' => '0',
+                );
 
-                //->plaintext;
+                //lets get the reviews inside the table
+                self::getScore($theReview,$review->find('table',0));
 
                 //date
                 if ($review->find('p[class=text-muted]', 0))
@@ -128,10 +137,14 @@ class BuildersCrack extends DataExtension
                     $newReview = new JobReviews();
                 }
                     $newReview->jobNumber = $jbNo;
-                $newReview->date = $theReview['date'];
-                $newReview->link = $reviewObj->href;
+                    $newReview->date = $theReview['date'];
+                    $newReview->link = $reviewObj->href;
                     $newReview->comment = $theReview['comment'];
-                $newReview->jobTitle = $theReview['title'];
+                    $newReview->jobTitle = $theReview['title'];
+                    $newReview->workmanship = $theReview['workmanship'];
+                    $newReview->cost = $theReview['cost'];
+                    $newReview->professionalism = $theReview['professionalism'];
+                    $newReview->responsiveness = $theReview['responsiveness'];
                     $newReview->Write();
 
             }
@@ -141,7 +154,19 @@ class BuildersCrack extends DataExtension
 
 
     }
+    private static function getScore(&$theReview ,$table ){
 
+        foreach ($table->find('tr') as $rating) {
+            //chec kthe first td as review cat
+            $ratingCat = strtolower($rating->find('td',0)->plaintext);
+            $ratingScore = strtolower($rating->find('td',1)->plaintext);
+
+            if (isset($theReview[$ratingCat]))$theReview[$ratingCat] = $ratingScore;
+
+        }
+
+
+    }
     /**
      * @return string contain contents of review
      */

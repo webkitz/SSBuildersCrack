@@ -45,6 +45,11 @@ class JobReviews extends DataObject
             TextField::create('link', 'Review Link'),
             TextField::create('jobNumber', 'Job Number'),
             TextareaField::create('comment', 'Review'),
+            ReadonlyField::create('workmanship', 'Workmanship'),
+            ReadonlyField::create('responsiveness', 'Responsiveness'),
+            ReadonlyField::create('professionalism', 'Professionalism'),
+            ReadonlyField::create('schedule', 'Schedule'),
+            ReadonlyField::create('cost', 'Cost'),
             CheckboxField::create('enabled', 'Enable Review')
         );
     }
