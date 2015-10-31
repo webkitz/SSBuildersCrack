@@ -16,6 +16,11 @@ class JobReviews extends DataObject
         'jobTitle' => 'Text',
         'link' => 'Varchar',
         'jobNumber' => 'Varchar',
+        'workmanship' => 'Varchar',
+        'schedule' => 'Varchar',
+        'professionalism' => 'Varchar',
+        'responsiveness' => 'Varchar',
+        'cost' => 'Varchar',
         'enabled' => 'Boolean'
     );
 
