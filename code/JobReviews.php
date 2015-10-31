@@ -31,9 +31,14 @@ class JobReviews extends DataObject
 
     //create summary fields to be shown on GridField
     public static $summary_fields = array(
-        'jobNumber' => 'Job Number',
+        'date' => 'Date',
+        //'jobNumber' => 'Job Number',
         'jobTitle' => 'Review Title',
-        'date' => 'Date'
+        'workmanship' => 'Work',
+        'responsiveness' => 'Resp',
+        'professionalism' => 'Prof',
+        'cost' => 'Cost',
+        'enabled' => 'Enabled'
     );
 
     //update CMS interface and add GridField input fields
@@ -41,9 +46,9 @@ class JobReviews extends DataObject
     {
         return FieldList::create(
             TextField::create('jobTitle', 'Review title'),
-            TextField::create('date', 'Review Date'),
-            TextField::create('link', 'Review Link'),
-            TextField::create('jobNumber', 'Job Number'),
+            ReadonlyField::create('date', 'Review Date'),
+            ReadonlyField::create('link', 'Review Link'),
+            ReadonlyField::create('jobNumber', 'Job Number'),
             TextareaField::create('comment', 'Review'),
             ReadonlyField::create('workmanship', 'Workmanship'),
             ReadonlyField::create('responsiveness', 'Responsiveness'),
